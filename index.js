@@ -2,6 +2,7 @@
 
 //importing libraries
 var express = require("express");
+var cors = require('cors')
 var http = require('http');
 const { Wallet,XpringClient, XrpClient, XrpPayIdClient, XrplNetwork,TransactionStatus } = require("xpring-js");
 
@@ -9,6 +10,7 @@ const { Wallet,XpringClient, XrpClient, XrpPayIdClient, XrplNetwork,TransactionS
 
 //creating express app
 var app = express();
+    app.use(cors());
     app.set('port', process.env.PORT || 3000);
 
 
@@ -105,7 +107,8 @@ app.get("/api/get_balance", (req, res, next) => {
 
 //send money
 app.post('/api/send_money', function (req, res) {
-   
+//app.get('/api/send_money', function (req, res) {
+	
     //validate variables
     if (!req.param) {
         return res.status(400).send({
@@ -128,10 +131,11 @@ app.post('/api/send_money', function (req, res) {
 	function feedback(value){
 	
      res.json([value]);	
+	   var myArray = {"sucess": value};
+	       res.json(myArray);
 		
 	}
 	
-	//send_xrp(send_amount, payId, wallet);
 	send_xrp(send_amount, payId, wallet).then((value) => feedback(value));
  
 });
@@ -139,7 +143,7 @@ app.post('/api/send_money', function (req, res) {
 
 // Listen to port
 app.listen(app.get('port'), function () {
-  console.log('App is listening on port ' + app.get('port'));
+  console.log('CORS-enabled web server listening on port ' + app.get('port'));
 });
 
 
