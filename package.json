@@ -1,18 +1,24 @@
 {
-  "name": "",
+  "name": "xrpmobile",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "server for connecting to xrpnetwork",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "start"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://noahwalugembe@bitbucket.org/noahwalugembe/payidmobile.git"
   },
-  "author": "",
+  "keywords": [
+    "xrpmobile"
+  ],
+  "author": "walugembe noah francis",
   "license": "ISC",
+  "homepage": "https://bitbucket.org/noahwalugembe/payidmobile#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.17.1",
+    "http": "0.0.1-security",
+    "xpring-js": "^5.0.1"
   }
 }
