@@ -1,8 +1,8 @@
 {
-  "name": "xrpmobile",
+  "name": "xrp_mobile_server",
   "version": "1.0.0",
   "description": "server for connecting to xrpnetwork",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "start"
   },
