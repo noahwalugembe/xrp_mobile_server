@@ -105,8 +105,48 @@ app.get("/api/get_balance", (req, res, next) => {
    
 });
 
-//send money
-app.post('/api/send_money', function (req, res) {
+
+//send money get
+app.get('/api/get_send_money', function (req, res) {
+
+    //validate variables
+    if (!req.param) {
+        return res.status(400).send({
+            message: "User  can not be empty"
+        });
+    }
+    
+	//Extract variables
+    var amount = req.param('send_amount');
+    var payId = req.param('payId');
+	var wallet_Seed = req.param('wallet_Seed');
+
+	//creating wallet using seed
+	const wallet = Wallet.generateWalletFromSeed(wallet_Seed);
+
+	// Amount of XRP to send
+    const send_amount = BigInt(amount);
+
+    //do some thing with variable
+	function feedback(value){
+	
+     //res.json([value]);	
+	   var myArray = {"sucess": value};
+	       res.json(myArray);
+		
+	}
+	
+	send_xrp(send_amount, payId, wallet).then((value) => feedback(value));
+ 
+});
+
+
+
+
+
+
+//send money post
+app.post('/api/post_send_money', function (req, res) {
 //app.get('/api/send_money', function (req, res) {
 	
     //validate variables
@@ -130,7 +170,7 @@ app.post('/api/send_money', function (req, res) {
     //do some thing with variable
 	function feedback(value){
 	
-     res.json([value]);	
+     	
 	   var myArray = {"sucess": value};
 	       res.json(myArray);
 		
@@ -146,18 +186,3 @@ app.listen(app.get('port'), function () {
   console.log('CORS-enabled web server listening on port ' + app.get('port'));
 });
 
-
-
-
-
-
-
-
-/*
-http://localhost:3000/api/sum/2/3
-http://localhost:3000/api/get_balance
-http://localhost:3000/api/send_money
-app.listen(3000, () => {
- console.log("Server running on port 3000");
-});
-*/

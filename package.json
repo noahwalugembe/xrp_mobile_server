@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "server for connecting to xrpnetwork",
   "main": "index.js",
+ 
   "scripts": {
-    "test": "start"
+    "start": "node index.js"
   },
+  
   "repository": {
     "type": "git",
     "url": "git+https://noahwalugembe@bitbucket.org/noahwalugembe/payidmobile.git"
